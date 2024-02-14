@@ -1,0 +1,11 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav mode="over" [opened]="navService.isNavOpen()" (closed)="navService.closeNav()" class="app-sidenav">
+    <div *ngIf="authService.authenticationStatus$ | async; else login">
+      <app-nav-menu-authorized></app-nav-menu-authorized>
+    </div>
+    <ng-template #login>
+      <app-nav-menu-unauthorized></app-nav-menu-unauthorized>
+    </ng-template>
+  </mat-sidenav>
+  <app-nav-content></app-nav-content>
+</mat-sidenav-container>
