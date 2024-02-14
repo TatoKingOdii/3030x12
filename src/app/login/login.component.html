@@ -1,0 +1,25 @@
+<div class="login-container">
+  <h2>LOGIN</h2>
+  <div *ngIf="errorMsg">
+    <h4 class="red">{{ errorMsg }}</h4>
+  </div>
+  <form #loginForm="ngForm" (ngSubmit)="submitLogin()">
+    <mat-form-field class="full-width">
+      <input matInput name="username" required minlength="1" type="text"
+             [(ngModel)]="username" placeholder="Username"/>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput name="password" required minlength="1" [(ngModel)]="password" placeholder="Password"
+             [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div>
+      <div class="spacer"></div>
+      <button class="right" type="submit" [disabled]="loginForm.invalid" mat-button color="accent">
+        Login
+      </button>
+    </div>
+  </form>
+</div>

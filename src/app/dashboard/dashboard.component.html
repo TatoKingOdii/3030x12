@@ -1,0 +1,18 @@
+<div *ngIf="authService.authenticationStatus$ | async; else unauthorized">
+  <div class="content-containers">
+    <app-list class="content-list"
+              [contentList]="contentService.contentList$ | async"
+              (onContentSelected)="contentService.navigateContent($event)"
+              (onContentDelete)="contentService.deleteContent($event)">
+    </app-list>
+    <app-detail class="content-details"
+                [selectedContent]="contentService.selectedContent$ | async"
+                (onContentSave)="contentService.updateContent($event)"
+                (onCancel)="contentService.resetSelectedContent()">
+    </app-detail>
+  </div>
+</div>
+<!--Should never reach here due to the route guard-->
+<ng-template #unauthorized>
+  <app-unauthorized></app-unauthorized>
+</ng-template>

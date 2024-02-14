@@ -1,0 +1,27 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{ title }}</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <!--  Maybe replace this with a interactive table  -->
+    <mat-card-content *ngFor="let content of contentList">
+      <mat-action-list disableRipple>
+        <div class="flex-box">
+          <button mat-list-item class="content-item" (click)="onContentSelected.emit(content)">
+            <p matLine>Name: {{content.name}}</p>
+            <p matLine>Quantity: {{content.quantity}}</p>
+            <p matLine>Category: {{content.category}}</p>
+            <p matLine>Receive Date: {{content.receiveDate | date}}</p>
+            <p matLine>Expiration Date: {{content.expirationDate ? (content.expirationDate | date) : '-'}}</p>
+          </button>
+          <button mat-button color="warn" class="content-item text-center pad-left"
+                  (click)="onContentDelete.emit(content); $event.stopImmediatePropagation()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-action-list>
+    </mat-card-content>
+  </mat-card>
+</div>
